@@ -3,6 +3,6 @@ window.SITE_CONFIG = Object.freeze({
   primaryEmail: 'gireeshuiux@gmail.com',
   personalEmail: '',
   businessEmail: '',
-  linkedinUrl: '',
-  instagramUrl: '',
+  linkedinUrl: 'https://www.linkedin.com/in/gireesh-kumar-reddy-kolli-/',
+  instagramUrl: 'https://www.instagram.com/itsgireeshreddy/',
 });
