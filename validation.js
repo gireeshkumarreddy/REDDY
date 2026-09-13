@@ -1,7 +1,7 @@
 (function (root, factory) {
-  if (typeof module === 'object' && module.exports) module.exports = factory();
-  else root.EnquiryValidation = factory();
-})(typeof window !== 'undefined' ? window : this, function () {
+  if (typeof module === 'object' && module.exports) module.exports = factory(require('libphonenumber-js/min'));
+  else root.EnquiryValidation = factory(root.libphonenumber);
+})(typeof window !== 'undefined' ? window : this, function (phoneNumbers) {
   'use strict';
   function validate(input) {
     const data = {};
@@ -18,6 +18,16 @@
     const digits = data.phone.replace(/\D/g, '');
     if (!/^\+?[\d\s().-]+$/.test(data.phone) || data.phone.length > 32 || digits.length < 7 || digits.length > 15) {
       errors.phone = 'Please enter a valid phone number with 7–15 digits.';
+    }
+    if (input.country !== undefined && !errors.phone) {
+      const country = input.country;
+      const supported = typeof country === 'string' && phoneNumbers.getCountries().includes(country);
+      const number = supported && phoneNumbers.parsePhoneNumberFromString(data.phone, { defaultCountry: country, extract: false });
+      if (!number || !number.isPossible() || number.countryCallingCode !== phoneNumbers.getCountryCallingCode(country)) {
+        errors.phone = 'Please check your number and selected country code.';
+      } else {
+        data.phone = number.number;
+      }
     }
     if ((input.message != null && typeof input.message !== 'string') || data.message.length > 3000) {
       errors.message = 'Please keep your project details under 3,000 characters.';

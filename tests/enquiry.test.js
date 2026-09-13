@@ -34,6 +34,23 @@ test('server rejects invalid, cross-origin, oversized, and bot submissions witho
   assert.equal((await call(handler, JSON.stringify({ ...good, message: 'x'.repeat(17000) }))).status, 400);
   assert.equal(requests, 0);
 });
+test('country selection formats national numbers and avoids duplicated calling codes', () => {
+  const cases = [
+    ['FR', '06 12 34 56 78', '+33612345678'],
+    ['FR', '+33 6 12 34 56 78', '+33612345678'],
+    ['IN', '98765 43210', '+919876543210'],
+    ['US', '(202) 555-0147', '+12025550147'],
+    ['IT', '02 36618 300', '+390236618300'],
+  ];
+  for (const [country, phone, expected] of cases) {
+    const result = validate({ ...valid, country, phone });
+    assert.equal(result.valid, true);
+    assert.equal(result.data.phone, expected);
+  }
+  for (const [country, phone] of [['FR', '123'], ['XX', '0612345678'], ['FR', '+91 98765 43210'], ['IN', '987654321098765']]) {
+    assert.ok(validate({ ...valid, country, phone }).errors.phone);
+  }
+});
 test('disabled delivery returns a setup response and makes no provider request', async (t) => {
   delete process.env.ENQUIRY_DELIVERY_ENABLED;
   t.mock.method(global, 'fetch', async () => { throw new Error('Must never contact provider'); });

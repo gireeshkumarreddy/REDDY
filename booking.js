@@ -7,6 +7,16 @@
   const submit = document.getElementById('send-enquiry');
   const title = document.getElementById('call-title');
   const description = document.getElementById('call-description');
+  const country = document.getElementById('call-country');
+  const countryNames = new Intl.DisplayNames(['en'], { type: 'region' });
+  const countries = window.libphonenumber.getCountries().map((code) => ({
+    code, name: countryNames.of(code), dialCode: window.libphonenumber.getCountryCallingCode(code),
+  })).sort((a, b) => a.name.localeCompare(b.name, 'en'));
+  country.replaceChildren(...countries.map(({ code, name, dialCode }) => new Option(`+${dialCode} · ${name}`, code, code === 'FR', code === 'FR')));
+  country.addEventListener('change', () => {
+    form.elements.namedItem('phone').removeAttribute('aria-invalid');
+    document.getElementById('phone-error').hidden = true;
+  });
   let opener;
   let submitting = false;
   let submitted = false;

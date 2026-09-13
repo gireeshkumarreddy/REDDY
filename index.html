@@ -12,6 +12,7 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23ef5027'/%3E%3Ctext x='12' y='48' font-family='Arial' font-weight='800' font-size='46' fill='%2311110f'%3EG%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="/styles.css">
   <script src="/site-config.js" defer></script>
+  <script src="/assets/phone-numbers.js" defer></script>
   <script src="/validation.js" defer></script>
   <script src="/app.js" defer></script>
   <script src="/booking.js" defer></script>
@@ -102,7 +103,7 @@
       <form id="call-form" action="/api/book-call" method="post" novalidate>
         <div class="form-field"><label for="call-name">Name</label><input id="call-name" name="name" autocomplete="name" maxlength="80" required aria-describedby="name-error"><p class="field-error" id="name-error" hidden></p></div>
         <div class="form-field"><label for="call-email">Email</label><input id="call-email" name="email" type="email" autocomplete="email" inputmode="email" autocapitalize="none" spellcheck="false" maxlength="254" required aria-describedby="email-error"><p class="field-error" id="email-error" hidden></p></div>
-        <div class="form-field"><label for="call-phone">Phone number</label><input id="call-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="32" placeholder="+33 6 12 34 56 78" required aria-describedby="phone-hint phone-error"><p class="field-hint" id="phone-hint">Include your country code if you’re outside France.</p><p class="field-error" id="phone-error" hidden></p></div>
+        <div class="form-field"><label for="call-phone">Phone number</label><div class="phone-input"><select id="call-country" name="country" aria-label="Country and calling code" required><option value="FR" selected>+33 · France</option></select><input id="call-phone" name="phone" type="tel" autocomplete="tel-national" inputmode="tel" maxlength="32" placeholder="Phone number" required aria-describedby="phone-hint phone-error"></div><p class="field-hint" id="phone-hint">Choose your country code, then enter your number.</p><p class="field-error" id="phone-error" hidden></p></div>
         <div class="form-field"><label for="call-message">Your project <span>(optional)</span></label><textarea id="call-message" name="message" rows="3" maxlength="3000" placeholder="What do you have in mind?" aria-describedby="message-error"></textarea><p class="field-error" id="message-error" hidden></p></div>
         <div class="form-trap" aria-hidden="true"><label for="call-website">Leave this blank</label><input id="call-website" name="website" tabindex="-1" autocomplete="off"></div>
         <p id="form-error" class="form-error" role="alert" hidden></p>

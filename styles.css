@@ -366,11 +366,14 @@ body.dialog-open{position:fixed;top:var(--dialog-scroll);left:0;right:0;overflow
 .form-field{display:grid;gap:8px;min-width:0}
 .form-field label{font-size:.875rem;font-weight:500;color:#e4ded8}
 .form-field label>span{font-weight:400;color:var(--muted)}
-.form-field input,.form-field textarea{display:block;width:100%;min-width:0;min-height:48px;margin:0;padding:12px 14px;background:#ffffff03;border:1px solid #49433e;border-radius:5px;color:var(--text);font:inherit;font-size:1rem;line-height:1.5;transition:border-color .2s,background .2s}
+.form-field input,.form-field textarea,.form-field select{display:block;width:100%;min-width:0;min-height:48px;margin:0;padding:12px 14px;background:#ffffff03;border:1px solid #49433e;border-radius:5px;color:var(--text);font:inherit;font-size:1rem;line-height:1.5;transition:border-color .2s,background .2s}
+.phone-input{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:10px}
+.form-field select{cursor:pointer;color-scheme:dark;padding-left:10px;padding-right:6px;text-overflow:ellipsis}
+.form-field select option{background:#191816;color:#eee8e2}
 .form-field textarea{resize:vertical;min-height:98px;max-height:260px}
 .form-field input::placeholder,.form-field textarea::placeholder{color:#8f8881;opacity:1}
-.form-field input:hover,.form-field textarea:hover{border-color:#726052}
-.form-field input:focus-visible,.form-field textarea:focus-visible{outline:2px solid #e6b398;outline-offset:2px;border-color:#e6b398;background:#ffffff06}
+.form-field input:hover,.form-field textarea:hover,.form-field select:hover{border-color:#726052}
+.form-field input:focus-visible,.form-field textarea:focus-visible,.form-field select:focus-visible{outline:2px solid #e6b398;outline-offset:2px;border-color:#e6b398;background:#ffffff06}
 .form-field [aria-invalid=true]{border-color:#f1a18c}
 .field-hint{color:#aaa198;font-size:.8125rem;line-height:1.5}
 .field-error{color:#ffb8a6;font-size:.875rem;line-height:1.5}

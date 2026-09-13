@@ -4,7 +4,7 @@ Orange-and-black portfolio for Gireesh, UX/UI Product Designer in France. The ex
 
 ## Local development and Vercel
 
-Run `npm run dev` for the local preview, `npm test` for the enquiry endpoint checks, and `npm run build` to generate `public/`. There are no package dependencies. Vercel runs the build and deploys `api/book-call.js` as a Node.js function. Only the frontend assets are copied to `public/`.
+Run `npm ci` to install dependencies, `npm run dev` for the local preview, `npm test` for the enquiry endpoint checks, and `npm run build` to generate `public/`. Vercel runs the build and deploys `api/book-call.js` as a Node.js function. Only the frontend assets are copied to `public/`. The country selector and national number formatting use [libphonenumber-js](https://github.com/catamphetamine/libphonenumber-js); the browser bundle is served locally without external requests. France (+33) is selected initially.
 
 ## Contact and social profiles
 
