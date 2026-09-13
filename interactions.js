@@ -168,6 +168,7 @@
   document.addEventListener('scrollend', finishAnchorFocus);
   document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener('click', (event) => {
+      if (event.defaultPrevented || link.hasAttribute('data-book-call')) return;
       if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button > 0) return;
       const target = document.getElementById(link.getAttribute('href').slice(1));
       if (!target) return;
