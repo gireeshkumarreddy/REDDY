@@ -45,12 +45,12 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline-color:var(--f
 .hero-aside{top:51%}.hero-aside p{font-size:.8rem}
 .hero-caption{letter-spacing:.02em}
 .intro-active .portrait-flash{animation:portrait-exposure .9s ease-out .06s both}
-.intro-active .hero-image{animation:portrait-settle 1.5s var(--ease-out) both}
-.intro-active .hero-name{animation:entrance .95s var(--ease-out) .18s both}
+.intro-active .hero-image{animation:portrait-settle 3.2s var(--ease-out) both}
+.intro-active .hero-name{animation:entrance 1.3s var(--ease-out) .75s both}
 .intro-active .hero-copy>.eyebrow{animation:entrance .85s var(--ease-out) .32s both}
-.intro-active .hero-copy h2{animation:entrance .95s var(--ease-out) .43s both}
+.intro-active .hero-copy h2{animation:entrance 1.3s var(--ease-out) 1s both}
 .intro-active .hero-intro{animation:entrance .9s var(--ease-out) .54s both}
-.intro-active .hero-actions{animation:entrance .9s var(--ease-out) .64s both}
+.intro-active .hero-actions{animation:entrance 1.2s var(--ease-out) 1.2s both}
 @keyframes portrait-exposure{0%,12%{opacity:0}24%{opacity:.66}100%{opacity:0}}
 @keyframes portrait-settle{from{transform:scale(1.095);filter:brightness(.82)}to{transform:scale(1.055);filter:brightness(1)}}
 @keyframes entrance{from{opacity:0;transform:translateY(19px);filter:blur(3px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
@@ -248,10 +248,10 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline-color:var(--f
 .hero-scroll{font-size:.75rem;letter-spacing:.09em}
 .screen-flash{position:fixed;inset:0;z-index:80;pointer-events:none;opacity:0;background:#fff8ee}
 .screen-flash:before{content:'';position:absolute;inset:0;background:linear-gradient(125deg,transparent 38%,#fff3de85 45%,#fffefa 50%,#fff3de85 55%,transparent 62%);background-size:350% 350%;background-position:100% 50%}
-html.intro-active .screen-flash{animation:screen-exposure 1s ease-out .04s both}
-html.intro-active .screen-flash:before{animation:diagonal-exposure 1s cubic-bezier(.16,.7,.25,1) .04s both}
-@keyframes screen-exposure{0%{opacity:0;background-color:transparent}14%{opacity:1;background-color:transparent}28%{opacity:.78;background-color:#fff8ee}47%{opacity:.16;background-color:#fff8ee}100%{opacity:0;background-color:transparent}}
-@keyframes diagonal-exposure{0%{background-position:100% 50%}100%{background-position:0% 50%}}
+html.intro-active .screen-flash{animation:screen-exposure 3.2s cubic-bezier(.25,.46,.45,.94) both}
+html.intro-active .screen-flash:before{animation:diagonal-exposure 3.2s cubic-bezier(.25,.46,.45,.94) both}
+@keyframes screen-exposure{0%{opacity:0;background-color:transparent}18%{opacity:.65;background-color:transparent}34%{opacity:.9;background-color:#fff8ee}46%{opacity:.58;background-color:#fff8ee}72%{opacity:.1;background-color:#fff8ee}100%{opacity:0;background-color:transparent}}
+@keyframes diagonal-exposure{0%{background-position:100% 50%}72%,100%{background-position:0% 50%}}
 .contact{padding-top:64px;padding-bottom:76px;background:linear-gradient(130deg,#1d1b17,#171715 65%);border-color:#473128}
 .contact .section-top{padding-bottom:25px;border-bottom:1px solid #ffffff12}
 .contact-grid{margin-top:38px;gap:clamp(36px,7vw,100px);align-items:start}

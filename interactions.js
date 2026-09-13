@@ -8,19 +8,56 @@
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
   const motionAllowed = () => !reducedMotion.matches;
+  const introDuration = 3200;
   let introPlayed = false;
   let introTimer;
+  let introStartTimer;
+  let introFrame;
+  let introCycle = 0;
 
-  // One screen-wide diagonal exposure, after the portrait loads. Content stays usable.
-  const playIntro = () => {
-    if (introPlayed || !motionAllowed() || !portrait.naturalWidth) return;
-    introPlayed = true;
-    hero.classList.add('intro-active');
-    root.classList.add('intro-active');
-    introTimer = setTimeout(() => { hero.classList.remove('intro-active'); root.classList.remove('intro-active'); }, 1800);
+  const resetIntro = () => {
+    introCycle += 1;
+    clearTimeout(introTimer);
+    clearTimeout(introStartTimer);
+    cancelAnimationFrame(introFrame);
+    hero.classList.remove('intro-active');
+    root.classList.remove('intro-active');
+    introPlayed = false;
   };
+
+  // Wait for a visible, decoded portrait before the single, unhurried exposure.
+  // A new visit or tab return gets a fresh reveal, including back/forward cache restores.
+  const playIntro = async () => {
+    if (introPlayed || document.hidden || !motionAllowed() || !portrait.complete || !portrait.naturalWidth) return;
+    introPlayed = true;
+    const cycle = introCycle;
+    try { await portrait.decode(); } catch { /* A loaded portrait can still be displayed. */ }
+    if (cycle !== introCycle || document.hidden || !motionAllowed()) return;
+    introFrame = requestAnimationFrame(() => {
+      introFrame = requestAnimationFrame(() => {
+        introStartTimer = setTimeout(() => {
+          if (cycle !== introCycle || document.hidden || !motionAllowed()) return;
+          hero.classList.add('intro-active');
+          root.classList.add('intro-active');
+          introTimer = setTimeout(() => {
+            hero.classList.remove('intro-active');
+            root.classList.remove('intro-active');
+          }, introDuration + 150);
+        }, 220);
+      });
+    });
+  };
+  portrait.addEventListener('load', playIntro);
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) resetIntro();
+    playIntro();
+  });
+  window.addEventListener('pagehide', resetIntro);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) resetIntro();
+    else playIntro();
+  });
   if (portrait.complete) playIntro();
-  else portrait.addEventListener('load', playIntro, { once: true });
 
   // Reveal once, progressively. Without an observer, everything remains visible.
   let revealObserver;
@@ -208,10 +245,8 @@
   updateScroll();
 
   reducedMotion.addEventListener('change', () => {
-    if (!reducedMotion.matches) return;
-    clearTimeout(introTimer);
-    hero.classList.remove('intro-active');
-    root.classList.remove('intro-active');
+    resetIntro();
+    if (!reducedMotion.matches) { playIntro(); return; }
     hero.style.removeProperty('--portrait-shift');
     revealObserver?.disconnect();
     revealElements.forEach((element) => element.classList.add('is-visible'));
