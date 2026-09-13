@@ -12,7 +12,7 @@ Contact email: `gireeshuiux@gmail.com`. Public settings are in `site-config.js`.
 
 ## Enquiry delivery — owner setup required
 
-Every Book a Call CTA opens the same accessible enquiry dialog. It asks for name, email, phone, and optional project details. The client and server validate email, phone, and field lengths. Invalid and failed submissions keep the entered details. A success message appears only after the server receives a positive provider acknowledgement.
+Only the header and mobile navigation Book a Call CTAs open the enquiry dialog. The orange Book an appointment CTAs and the closing project link open a `mailto:` draft to `gireeshuiux@gmail.com` with the subject “Project appointment request” and a prefilled request for Google Meet availability. Visitors send that draft through their own configured email application; clicking the link does not send an email automatically or reserve a meeting. It asks for name, email, phone, and optional project details. The client and server validate email, phone, and field lengths. Invalid and failed submissions keep the entered details. A success message appears only after the server receives a positive provider acknowledgement.
 
 **Email delivery is currently disabled.** Automatic approval review blocked the live test because using FormSubmit as an intermediary had not been explicitly approved. Do not claim inbox delivery has been verified.
 
