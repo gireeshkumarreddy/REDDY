@@ -21,4 +21,7 @@ const server = http.createServer(async (req, res) => {
   res.setHeader('Content-Type', types[path.extname(file)] || 'application/octet-stream');
   fs.createReadStream(file).pipe(res);
 });
-server.listen(Number(process.env.PORT) || 3000, '0.0.0.0', () => console.log('Portfolio preview at http://localhost:' + server.address().port));
+const portArgument = process.argv.indexOf('--port');
+const previewPort = Number(portArgument >= 0 ? process.argv[portArgument + 1] : process.env.PORT || 3000);
+if (!Number.isInteger(previewPort) || previewPort < 1 || previewPort > 65535) throw new Error('Invalid preview port');
+server.listen(previewPort, '0.0.0.0', () => console.log('Portfolio preview listening on port ' + server.address().port));

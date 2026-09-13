@@ -35,9 +35,9 @@
     <div class="reading-progress" aria-hidden="true"></div>
     <a class="wordmark" href="#home" aria-label="Gireesh home">g<span>.</span></a>
     <nav class="desktop-nav" aria-label="Main navigation"><a href="#contact">Let’s talk</a><a href="#services">What I build</a></nav>
-    <a class="button button-small button-outline" href="#book" data-book-call>Book a call <svg class="icon"><use href="#arrow-up-right"/></svg></a>
+    <a class="button button-small button-outline" href="#book" data-book-call>Book a Call <svg class="icon"><use href="#arrow-up-right"/></svg></a>
     <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button>
-    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden><a href="#contact">Let’s talk</a><a href="#services">What I build</a><a href="#book" data-book-call>Book a project call</a></nav>
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation" hidden><a href="#contact">Let’s talk</a><a href="#services">What I build</a><a href="#book" data-book-call>Book a Call</a></nav>
   </header>
 
   <main id="main">
@@ -47,7 +47,7 @@
       <div class="hero-name"><h1 id="hero-name">GIREESH</h1><p>UX/UI Product Designer</p></div>
       <div class="hero-copy">
         <h2>Thoughtful design.<br>Lasting impact.</h2>
-        <div class="hero-actions"><a class="button button-orange" href="#book" data-book-call>Book a call <svg class="icon"><use href="#arrow-up-right"/></svg></a></div>
+        <div class="hero-actions"><a class="button button-orange" href="#book" data-book-call>Book an appointment <svg class="icon"><use href="#arrow-up-right"/></svg></a></div>
         <div class="social-links hero-socials" aria-label="Social profiles">
           <a data-social="linkedin" class="social-link" role="link" aria-disabled="true" title="Profile link coming soon"><svg class="icon"><use href="#linkedin"/></svg>LinkedIn <span aria-hidden="true">↗</span></a>
           <a data-social="instagram" class="social-link" role="link" aria-disabled="true" title="Profile link coming soon"><svg class="icon"><use href="#instagram"/></svg>Instagram <span aria-hidden="true">↗</span></a>
@@ -70,7 +70,7 @@
           <h3>Let’s talk about<br>your project.</h3>
           <p>A focused conversation about your idea, scope, and timeline. Bring your questions—I’ll bring a point of view.</p>
           <div class="meeting-meta"><span><svg class="icon"><use href="#video"/></svg>Google Meet</span><span><svg class="icon"><use href="#calendar"/></svg>Project discovery</span></div>
-          <button type="button" class="button button-orange button-full" data-book-call>Book a call <svg class="icon"><use href="#arrow-up-right"/></svg></button>
+          <button type="button" class="button button-orange button-full" data-book-call>Book an appointment <svg class="icon"><use href="#arrow-up-right"/></svg></button>
           <p class="booking-footnote">Share a few details. I’ll email you to arrange a time.</p>
           <noscript><p class="booking-footnote">Email <a href="mailto:gireeshuiux@gmail.com">gireeshuiux@gmail.com</a> to arrange your call.</p></noscript>
         </div>
@@ -97,8 +97,8 @@
     <div class="dialog-content">
       <button type="button" class="dialog-close" aria-label="Close enquiry form" data-close-dialog><span aria-hidden="true">×</span></button>
       <p class="eyebrow">LET’S MAKE SOMETHING MATTER</p>
-      <h2 id="call-title">Book a call.</h2>
-      <p id="call-description">Tell me a little about yourself. I’ll get back to you to arrange a time.</p>
+      <h2 id="call-title">Request a meeting.</h2>
+      <p id="call-description">Share your details and I’ll email you to arrange a Google Meet.</p>
       <form id="call-form" action="/api/book-call" method="post" novalidate>
         <div class="form-field"><label for="call-name">Name</label><input id="call-name" name="name" autocomplete="name" maxlength="80" required aria-describedby="name-error"><p class="field-error" id="name-error" hidden></p></div>
         <div class="form-field"><label for="call-email">Email</label><input id="call-email" name="email" type="email" autocomplete="email" inputmode="email" autocapitalize="none" spellcheck="false" maxlength="254" required aria-describedby="email-error"><p class="field-error" id="email-error" hidden></p></div>
@@ -106,7 +106,7 @@
         <div class="form-field"><label for="call-message">Your project <span>(optional)</span></label><textarea id="call-message" name="message" rows="3" maxlength="3000" placeholder="What do you have in mind?" aria-describedby="message-error"></textarea><p class="field-error" id="message-error" hidden></p></div>
         <div class="form-trap" aria-hidden="true"><label for="call-website">Leave this blank</label><input id="call-website" name="website" tabindex="-1" autocomplete="off"></div>
         <p id="form-error" class="form-error" role="alert" hidden></p>
-        <button id="send-enquiry" class="button button-orange button-full" type="submit"><span>Send enquiry</span><svg class="icon"><use href="#arrow-up-right"/></svg></button>
+        <button id="send-enquiry" class="button button-orange button-full" type="submit"><span>Request a meeting</span><svg class="icon"><use href="#arrow-up-right"/></svg></button>
         <p class="form-note">I’ll use your details only to respond to your enquiry.</p>
       </form>
       <div id="call-success" class="call-success" role="status" tabindex="-1" hidden>

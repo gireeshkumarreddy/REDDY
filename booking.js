@@ -14,6 +14,15 @@
   let previousPayload;
   let pageScroll = 0;
 
+  // randomUUID is unavailable on some browsers and HTTP development previews.
+  function createRequestId() {
+    if (typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+    const bytes = crypto.getRandomValues(new Uint8Array(16));
+    bytes[6] = (bytes[6] & 15) | 64;
+    bytes[8] = (bytes[8] & 63) | 128;
+    const hex = Array.from(bytes, (value) => value.toString(16).padStart(2, '0')).join('');
+    return [hex.slice(0, 8), hex.slice(8, 12), hex.slice(12, 16), hex.slice(16, 20), hex.slice(20)].join('-');
+  }
   const fields = ['name', 'email', 'phone', 'message'];
   function setErrors(errors) {
     fields.forEach((name) => {
@@ -82,7 +91,7 @@
     }
     const fingerprint = JSON.stringify(data);
     if (fingerprint !== previousPayload) {
-      requestId = crypto.randomUUID();
+      requestId = createRequestId();
       previousPayload = fingerprint;
     }
     submitting = true;
@@ -125,7 +134,7 @@
       clearTimeout(timeout);
       submitting = false;
       submit.disabled = false;
-      submit.querySelector('span').textContent = 'Send enquiry';
+      submit.querySelector('span').textContent = 'Request a meeting';
       form.removeAttribute('aria-busy');
     }
   });
